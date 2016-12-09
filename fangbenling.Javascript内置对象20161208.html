@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+        <style type="text/css">
+        body{}
+        #main{width:1200px;
+              height:auto;
+              background:#D0E3FC;
+              margin:auto;}
+        </style>
+	</head>
+	<body>
+    <script type="text/javascript">
+         // var arr = [1,3,4,5,6,7];
+         //      console.log(arr.length);
+              // var arr= [1,2,3,4];
+              // var arr1=[5,6,7];
+              // var arr2 = [8,9];
+              // console.log(arr.concat(arr1,arr2));
+              var arr= [1,2,3,4,5,6,7]
+console.log(arr.pop()+"  "+arr)
+    </script>
+    <div id="main">
+		<h1>字符串（String）数组（Array）对象（Object）</h1>
+		<h3>字符串</h3>
+		<p>字符串的声明：</p>
+		<pre>var = "我是字符串";
+var = new String("我是字符串");
+字符串操作中的长度中文和英文长度计算是相同的
+var str = "我的js"此处长度是4</pre>
+        <p>字符串的属性和方法</p>
+		<p>1、计算字符串的长度（属性）</p>
+		<p>如何使用长度属性来计算字符串的长度？</p>
+		<pre> var str = "hello world";
+    document.write(str.length)
+	或者 console.log(str.length)</pre>
+	<p>2、字符串的方法</p>
+	<p>indexOf()是用方法：</p>
+	<p>如何使用indexof()来定位字符串某一个指定的字符首次出现的位置</p>
+	<pre> var str = "hello world";
+使用indexof索引，得到的索引号是从0开始的，
+   indexOf(d);
+   console.log(str.indexOf("d"));这是我们索引的方式
+有时候为了方便我们会声明一个函数：
+function trace(bgm){
+	console.log(bgm);
+}
+  trace(str.indexOf("d"));
+             索引号:11
+后面的可以用trace();代替console.log();去检查元素。
+	</pre>
+	<p>substr():从起始索引号提取字符串中指定数目的字符。substr(start,length)</p>
+	<pre>
+		function trace(bgm){
+		console.log(bgm);
+	}
+		var str = "abcdef";
+		trace(str.substr(0,4));
+		结果:abcd
+	</pre>
+	<p>substring():提取字符串中两个指定的索引号之间的字符。substring(from,to)</p>
+	<pre>function trace(bgm)
+{console.log(bgm);
+	}
+var str = "abcdef";
+trace(str.substring(2,6));   
+  结果:cdef</pre>
+  <p>slice():提取字符串的片断，并在新的字符串中返回被提取的部分。slice(start,end)</p>
+	<pre>
+var str = "abcdef";
+trace(str.slice(0,6));   
+  结果:abcdef
+	</pre>
+	<p>split():把字符串分割为字符串数组。split("",num) 引号内部是要切割字符的部分，mun是切割成几部分</p>
+	<pre>
+		var str = "abcdef";
+		trace(str.split("c",3));
+		结果："ab,def"  c自己本身被切除,后面的数字是根据切除节点的个数后需要留下数组内部元素的个数
+如果2个c:
+var str = "abcdecf";
+ trace(str.split("c",3));
+ 结果："ab,de,f"
+ trace(str.split("c",2));
+ 结果："ab,de"
+	</pre>
+	<p>charAt():可返回指定位置的字符。charAt(num)</p>
+	<pre>
+
+var str="Hello world!"
+document.write(str.charAt(1))
+结果：e 
+	</pre>
+<p>concat():连接字符串，用于连接两个或多个字符串</p>
+<p>提示：请注意，使用 " + " 运算符来进行字符串的连接运算通常会更简便一些。
+</p>
+<pre>var str1="Hello "
+var str2="world!"
+document.write(str1.concat(str2));
+结果:Hello world
+</pre>
+<p>match():可在字符串内检索指定的值，或找到一个或多个正则表达式的匹配。
+该方法类似indexof()，但是它返回指定的值，而不是字符串的位置。
+</p>
+<pre>var str="Hello world!"
+document.write(str.match("world") + "<br />")
+document.write(str.match("World") + "<br />")
+document.write(str.match("worlld") + "<br />")
+document.write(str.match("world!"))
+结果
+world
+null
+null
+world!
+</pre>
+<pre>var str="1 plus 2 equal 3"
+document.write(str.match(/\d+/g))
+结果：1、2、3
+</pre>
+<h2>Javascript Array对象</h2>
+<h3>数组对象</h3>
+<p>Array(数组)的声明</p>
+<p>Array对象用于在单个变量中存储多个值</p>
+<pre> var arr = [];
+ var arr1 = new Array();
+ var arr2 = Array{[1]}</pre>
+ <h4>Array属性和方法</h4>
+ <p>length:是数组的固有属性 元素的个数</p>
+ <pre>
+     var arr = [1,3,4,5,6,7];
+     console.log(arr.length);
+     结果：6
+ </pre>
+ <p>数组Array方法</p>
+ <p>concat():用于连接两个或多个数组。
+  arrayObject.concat()
+该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本</p>
+<pre>
+    var arr= [1,2,3,4];
+    var arr1=[5,6,7];
+    var arr2 = [8,9];
+    console.log(arr.concat(arr2,arr3));
+    结果：Array [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+</pre>
+<p>pop():删除数组对象最后一个元素，把元素改变数组 长度减1、并且返回它删除的元素的值 如果数组已经为空 则 pop()不改变数组，并返回undefined值</p>
+<pre> var arr= [1,2,3,4,5,6,7]
+console.log("新数组"+arr.pop()+"原数组"+arr)
+结果：7 
+      1，2，3，4，5，6会改变原数组
+      pop()
+</pre>
+
+
+
+</div>	
+	</body>
+</html>
