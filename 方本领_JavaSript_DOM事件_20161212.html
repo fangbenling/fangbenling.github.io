@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{background-image: url(http://a1.qpic.cn/psb?/V107sOVO3w2Pbd/7L2Lmev831CB9xi4YB4V4te8H3m9d5PMCA5fYp93PKs!/m/dHgBAAAAAAAA&bo=DAOZAQAAAAAFB7M!&rf=photolist);
+			  }
+			  #box{width: 1200px;height:auto;margin:auto;}
+		</style>
+	</head>
+	<body>
+	<div id="box">	
+    <h1>JavaScript HTML DOM事件</h1>
+    <h3>HTML DOM（文档对象模型）</h3>
+    <h3>HTML DOM树</h3>
+    <img src="http://www.w3school.com.cn/i/ct_htmltree.gif" alt="" />
+    <p>1.JavaScript能够通过事件机制改变页面中的所有的HTML元素
+    、所有的HTML属性、所有CSS样式、所有事件做出反应</p>
+     <h3>查找HTML元素</h3>
+     <p>通过id查找;标签名查找；类名查找</p>
+     <h3>改变HTML输出流</h3>
+    <p>document.write()</p>
+    <h3>改变HTML内容</h3>
+    <p>document.getelementbyid().innerHTML="new HTML"</p>
+    <h3>改变HTML属性</h3>
+    <p>document.getelementbyid().src="land.jpg"</p>
+    <h2>HTML DOM 使JavaSript有能力对HTML事件做出反应</h2>
+    <p>当用户点击鼠标时（onclick）；当网页加载时；图像加载时；鼠标移动时（mousemove）;输入字段被改变时；提交HTML表单时；当用户出发按键时</p>
+    <h3>HTML事件属性</h3>
+    <p>onload和onunload事件：onload 和 onunload 事件会在用户进入或离开页面时被触发。
+
+</p>
+<p>onchange事件：onchange事件长结合对输入字段的验证使用
+<input type="text" onchange="oppCase" />改变输入文字内容时会调用oppCase函数</p>
+<p>onmouseover和onmouseout事件可用在用户鼠标移动时出发</p>
+	<p>onload加载时、onfocus获得焦点时（表单验证）</p>
+    <h3>添加和删除节点（HTML元素）</h3>
+    <p>创建新的HTML元素</p>
+    <p>如需向HTML DOM添加新元素，必须先创建元素节点然后向一个已存在的元素追加该元素。
+</p>
+<pre>
+ <div id="div1">
+<p id="p1">这是一个段落</p>
+<p id="p2">这是另一个段落</p>
+</div>
+
+<script>
+var para=document.createElement("p");
+var node=document.createTextNode("这是新段落。");
+para.appendChild(node);
+var element=document.getElementById("div1");
+element.appendChild(para);
+</script>
+   
+</pre>
+<h4>删除已有HTML元素</h4>
+<p>r如需删除HTML元素，必须首先获得该元素的父元素</p>
+<pre>
+<div id="div1">
+<p id="p1">这是一个段落。</p>
+<p id="p2">这是另一个段落。</p>
+</div>
+
+<script>
+var parent=document.getElementById("div1");
+var child=document.getElementById("p1");
+parent.removeChild(child);
+</script>
+
+</pre>
+
+<h1>javascript事件机制</h1>
+<p>JavaScript 的事件是以一种流的形式存在的，一个事件会有多个元素同时响应。具体分为：捕获型事件 （非IE）（经@hentailing 同学提醒，IE已支持）、冒泡型事件（所有浏览器都支持）。
+捕获型事件是自上而下的，而冒泡型事件是自下而上的。下面这张图说的很明了：</p><img src="http://img.blog.csdn.net/20140321184512203?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VzdW9wdUJVUFQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" />
+<p>1.捕获流事件</p>
+<pre>
+
+    <div id="div1" style="width:300px;height:300px;background-color:red;">  
+        #div1  
+        <div id="div2" style="width:200px;height:200px;background-color:yellow;margin-top:30px;">  
+            #div2  
+        </div>  
+    </div>  
+</body>  
+<script>  
+    var a = document.getElementById('div1');  
+    var b = document.getElementById('div2');  
+    a.addEventListener('click', alertID, true);  
+    b.addEventListener('click', alertID, true);  
+  
+    function alertID() {  
+        alert(this.id);  
+    }  
+</script>  
+ 
+</pre>
+<img src="http://img.blog.csdn.net/20140321185541640?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3VzdW9wdUJVUFQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" />
+<p>2.冒泡流事件</p>
+<pre> 
+  
+<script type="text/javascript">  
+    var i = 1;  
+    function Add(sText,objText)  
+    {  
+        document.getElementById("Console").innerHTML +=sText + "执行顺序：" + i + "<br />" + "<hr />";  
+        i = i + 1;  
+        //window.event.cancelBubble = true;   
+    }  
+</script>  
+
+  
+  
+<body onclick="Add('body事件触发<br />','body')">  
+<div onclick="Add('div事件触发<br />','div')">  
+    <p onclick="Add('p事件触发<br />','p')" style="background:#c00;">点击</p>  
+</div>  
+<div id="Console" style="border:solid 1px #ee0; background:#ffc;"></div>  
+  
+  
+</body>  
+ 
+</pre>
+</div>
+
+
+	</body>
+</html>
