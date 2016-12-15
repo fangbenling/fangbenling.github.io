@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{background-image: url(http://a1.qpic.cn/psb?/V107sOVO3w2Pbd/7L2Lmev831CB9xi4YB4V4te8H3m9d5PMCA5fYp93PKs!/m/dHgBAAAAAAAA&bo=DAOZAQAAAAAFB7M!&rf=photolist);
+			  }
+			  #box{width: 1200px;height:auto;margin:auto;}
+			  pre{font-size: 20px;}
+			  p{font-size: 20px;}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+    <h1>SVG教程</h1>
+    <p>SVG意为可缩放矢量图形</p>
+    <p>SVG使用XML格式定义图像</p>
+ <h2>SVG简介</h2>
+ <p>SVG是用有XML来描述二维图形和绘图程序的语言 ，学习SVG：我们要掌握两种语言   HTML XML</p>
+ <h3>SVG的优势</h3>
+ <p>svg可被非常多的工具读取和修改（记事本都可以）</p>
+ <p>svg与JPEG和gif图像比起来，尺寸小，且可压缩性强</p>
+ <p>svg是可伸缩的</p>
+ <p>SVG 图像可在任何的分辨率下被高质量地打印
+SVG 可在图像质量不下降的情况下被放大<br />
+SVG 图像中的文本是可选的，同时也是可搜索的（很适合制作地图）<br />
+SVG 可以与 Java技术一起运行 <br />
+SVG 是开放的标准<br />
+SVG 文件是纯粹的 XML<br />
+SVG 的主要竞争者是 Flash。
+与 Flash 相比，SVG 最大的优势是与其他标准（比如 XSL 和 DOM）相兼容。而 Flash 则是未开源的私有技术</p>
+<p>下面就举得例子，基本书写规则</p>
+<p>svg可以直接嵌入html中只有个别浏览器兼容  欧朋浏览器不兼容</p>
+<pre>
+<h1>My first SVG</h1>
+<pre>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <circle cx="100" cy="50" r="40" stroke="black"
+  stroke-width="2" fill="red" />
+</svg>	
+这是一个圆的画法
+</pre>
+<pre>
+cx="100" cy="50" r="40" stroke="black"
+stroke-width="2" fill="red" 
+cx:圆心x坐标； cy:圆心y坐标   r半径   stroke 边框的颜色黑色    strole-width 边框的粗细    fill 填充色
+我们在写SVG的时候 在svg的内部可以写css的各种样式   近似可以把svg当做一个div 内部画的的图像可以做为容器的内容  可以在svg内部设置id
+在  style 样式内部给SVG设置各种样式 包括定位移动，因为svg是行内元素  定位时 记得display:block;
+</pre>
+<p>链接到SVG文件
+您还可以用<a>标签链接到一个SVG文件：链接到SVG文件
+您还可以用<a>标签链接到一个SVG文件：
+ a href = circle.svg
+<a href="circle1.svg">View SVG file</a></p>
+<h2>svg的形状</h2>
+<p>矩形 rect</p>
+<p>圆形circle</p>
+<p>椭圆ellipse</p>
+<p>线line</p>
+<p>折线polyline</p>
+<p>多边形polygon</p>
+<p>路径path</p>
+<pre>
+实例
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+<rect width="300" height="100"
+style="fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,0)"/>
+</svg>
+rect width="300" height="100"
+style="fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,0)"/>
+</pre>
+<pre>
+让我们看看另一个例子，它包含一些新的属性：
+Here is the SVG code:
+实例矩形
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <rect x="50" y="20" width="150" height="150"
+  style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;
+  stroke-opacity:0.9"/>
+</svg>
+rect x="50" y="20" width="150" height="150"
+style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;
+stroke-opacity:0.9"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <rect x="50" y="20" rx="20" ry="20" width="150" height="150"
+  style="fill:red;stroke:black;stroke-width:5;opacity:0.5"/>
+</svg>
+rect x="50" y="20" rx="20" ry="20" width="150" height="150"
+  style="fill:red;stroke:black;stroke-width:5;opacity:0.5"/>
+涉及透明度 线的粗细  填充  圆角
+</pre>
+<h3>椭圆</h3>
+<pre>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <ellipse cx="300" cy="80" rx="100" ry="50"
+ style="fill:yellow;stroke:purple;stroke-width:2"/>
+</svg>
+ellipse cx="300" cy="80" rx="100" ry="50"
+style="fill:yellow;stroke:purple;stroke-width:2"/>
+CX属性定义的椭圆中心的x坐标
+CY属性定义的椭圆中心的y坐标
+RX属性定义的水平半径
+RY属性定义的垂直半径<br />
+下面的例子创建了三个累叠而上的椭圆：
+下面是SVG代码：
+实例
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <ellipse cx="240" cy="100" rx="220" ry="30" style="fill:purple"/>
+  <ellipse cx="220" cy="70" rx="190" ry="20" style="fill:lime"/>
+  <ellipse cx="210" cy="45" rx="170" ry="15" style="fill:yellow"/>
+</svg>
+ellipse cx="240" cy="100" rx="220" ry="30" style="fill:purple"/>
+ellipse cx="220" cy="70" rx="190" ry="20" style="fill:lime"/>
+ellipse cx="210" cy="45" rx="170" ry="15" style="fill:yellow"/>
+<br />
+下面的例子组合了两个椭圆（一个黄的和一个白的）：
+下面是SVG代码：
+实例
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <ellipse cx="240" cy="50" rx="220" ry="30" style="fill:yellow"/>
+  <ellipse cx="220" cy="50" rx="190" ry="20" style="fill:white"/>
+</svg>
+ellipse cx="240" cy="50" rx="220" ry="30" style="fill:yellow"/>
+ellipse cx="220" cy="50" rx="190" ry="20" style="fill:white"/>
+</pre>
+<h3>svg直线</h3>
+<pre>
+<line> 元素是用来创建一个直线：
+下面是SVG代码：
+实例
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+<line x1="0" y1="0" x2="200" y2="200"
+style="stroke:rgb(255,0,0);stroke-width:2"/>
+</svg>
+line x1="0" y1="0" x2="200" y2="200"
+style="stroke:rgb(255,0,0);stroke-width:2"/>
+x1 属性在 x 轴定义线条的开始
+y1 属性在 y 轴定义线条的开始
+x2 属性在 x 轴定义线条的结束
+y2 属性在 y 轴定义线条的结束
+</pre>
+<h1>今天的练习小项目</h1>
+<h2>加载条</h2>
+<pre>
+<div id="demo" style="width: 1px;height: 30px;background: orange;"></div>
+<script type="text/javascript">
+	window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+			
+			var i = 0;
+			var d = document.getElementById('demo');
+			function step(timestamp) {
+				             i++;
+							demo.style.width= i +"px";
+							demo.innerHTML = parseInt(i/10) +"%";
+					if(i<1000){
+						requestAnimationFrame(step);
+					}
+			}
+			requestAnimationFrame(step);	
+</script>
+window.requestAnimationFrame = window.requestAnimationFrame ||
+ window.mozRequestAnimationFrame || 
+ window.webkitRequestAnimationFrame || 
+ 以上浏览器兼容问题
+ window.msRequestAnimationFrame;		
+			var i = 0;
+			var d = document.getElementById('demo');
+			function step(timestamp) {
+				             i++;
+							demo.style.width= i +"px";
+							demo.innerHTML = parseInt(i/10) +"%";
+					if(i<1000){
+						requestAnimationFrame(step);
+					}
+			}
+			requestAnimationFrame(step);
+</pre>
+<h2>图像旋转</h2>
+<pre>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="demo" width="600" height="600">
+			
+		</canvas>
+		<input type="button" name="" id="left" value="向左转" />
+		<input type="button" name="" id="right" value="向右转" />
+		<!--<img src="http://a2.qpic.cn/psb?/V107sOVO3w2Pbd/H1IbGF9XuxuiBiLxdbBjLH0QlAnFpjiev*estI0SpGg!/m/dHkBAAAAAAAA&bo=gALKAwAAAAAFB28!&rf=photolist"  id="img">-->
+		<script type="text/javascript">
+			var demo = document.getElementById('demo');
+			var con = demo.getContext('2d');
+			var img = new Image();
+			var left = document.getElementById('left');
+			var right = document.getElementById('right');
+			var demo = document.getElementById('demo');
+			
+			var canvasMidwidth = demo.width/2;
+			var canvasMidheight = demo.height/2;  
+			con.translate(canvasMidwidth,canvasMidheight);  //中心点
+			  
+			img.onload = function() {
+			   imgWidth = img.width/2;      
+			   imgHeight = img.height/2;    
+			   con.drawImage(img, -imgWidth/2, -imgHeight/2,imgWidth,imgHeight);
+
+			} //画布图片加载时的位置      自己设定 为图片宽度的 一半
+					
+			left.addEventListener('click',turnLeft,false);
+			function turnLeft(){
+				con.clearRect(-imgWidth/2,-imgHeight/2,350,530);//起始
+				con.rotate(90*Math.PI/180);//旋转90度
+			    con.drawImage(img,-imgWidth/2 ,-imgHeight/2,350,530 );		
+			}
+			right.addEventListener('click',turnRight,false);
+			function turnRight(){
+				con.clearRect(-imgWidth/2,-imgHeight/2,350,530);		//起始点	
+				con.rotate(-90*Math.PI/180);//旋转90度
+			    con.drawImage(img,-imgWidth/2 ,-imgHeight/2,350,530 );		
+			}
+			img.src="4.png";	
+		</script>
+	</body>
+</html>
+                   canvas id="demo" width="600" height="600">	/canvas>
+		input type="button" name="" id="left" value="向左转" />
+		input type="button" name="" id="right" value="向右转" />
+	       var demo = document.getElementById('demo');
+			var con = demo.getContext('2d');
+			var img = new Image();
+			var left = document.getElementById('left');
+			var right = document.getElementById('right');
+			var demo = document.getElementById('demo');
+			
+			var canvasMidwidth = demo.width/2;
+			var canvasMidheight = demo.height/2;  
+			con.translate(canvasMidwidth,canvasMidheight);  //中心点
+			  
+			img.onload = function() {
+			   imgWidth = img.width/2;      
+			   imgHeight = img.height/2;    
+			   con.drawImage(img, -imgWidth/2, -imgHeight/2,imgWidth,imgHeight);
+
+			} //画布图片加载时的位置      自己设定 为图片宽度的 一半
+					
+			left.addEventListener('click',turnLeft,false);
+			function turnLeft(){
+				con.clearRect(-imgWidth/2,-imgHeight/2,350,530);//起始
+				con.rotate(90*Math.PI/180);//旋转90度
+			    con.drawImage(img,-imgWidth/2 ,-imgHeight/2,350,530 );		
+			}
+			right.addEventListener('click',turnRight,false);
+			function turnRight(){
+				con.clearRect(-imgWidth/2,-imgHeight/2,350,530);		//起始点	
+				con.rotate(-90*Math.PI/180);//旋转90度
+			    con.drawImage(img,-imgWidth/2 ,-imgHeight/2,350,530 );		
+			}
+			img.src="4.png";
+
+</pre>
+
+
+
+
+
+			
+			
+			
+			
+		</div>
+	</body>
+</html>
