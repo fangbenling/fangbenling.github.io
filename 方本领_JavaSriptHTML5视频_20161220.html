@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{background-image: url(http://a1.qpic.cn/psb?/V107sOVO3w2Pbd/7L2Lmev831CB9xi4YB4V4te8H3m9d5PMCA5fYp93PKs!/m/dHgBAAAAAAAA&bo=DAOZAQAAAAAFB7M!&rf=photolist);
+			  }
+			  #box{width: 1200px;height:auto;margin:auto;}
+			 pre{background: #fff; font-size: 24px;border-radius: 10px;}
+			  p{font-size: 20px;}
+		</style>
+	</head>
+	<body>
+  <div id="box">
+  	
+
+				<h1>html5 video</h1>
+			
+			<p>
+				video 对象的部分属性和方法
+			</p>		
+<pre>
+src: 设置或返回音频/视频元素的当前来源
+
+autoplay: 设置或返回是否在加载完成后随即播放音频/视频
+
+buffered: 返回表示音频/视频已缓冲的TimeRanges对象
+
+	
+var tRangs = videos.buffered;	//返回表示视频已缓冲部分的 TimeRanges 对象。
+
+var tbuffed = tRangs.end(tRangs.length - 1);
+
+var curBuff = tbuffed / totalTime * 600;
+
+buffBar.style.width = curBuff + "px";
+
+controls: 设置或返回音频/视频是否显示控件(比如播放/暂停等)
+
+currentTime: 设置或返回音频/视频中的当前播放位置(以秒计)
+
+defaultMuted: 设置或返回音频/视频默认是否静音
+
+duration: 返回当前音频/视频的长度(以秒计)
+
+ended: 返回音频/视频的播放是否已结束
+
+loop: 设置或返回音频/视频是否应在结束时重新播放
+
+muted: 设置或返回音频/视频是否静音
+
+paused: 设置或返回音频/视频是否暂停
+
+played: 返回表示音频/视频已播放部分的TimeRanges对象
+
+textTracks: 返回表示可用文本轨道的TextTrackList对象
+
+videoTracks: 返回表示可用视频轨道的VideoTrackList对象
+
+volume: 设置或返回音频/视频的音量
+</pre>
+
+<pre>
+	播放:
+	videos.play();
+	
+	暂停:
+	videos.pause();
+	
+	获取播放进度:
+	var whereBar = videos.currrentTime();
+	
+	设置播放进度:
+	videos.currentTime(200);
+	
+	视频的持续时间，加载完成视频才可以知道视频的时长，
+	且在flash情况下无效
+	var longTime = videos.duration();
+	
+	缓冲:
+	var beBuff = videos.buffered();
+	
+	声音大小(0 -- 1之间)
+	var loud = videos.volume();
+	
+	设置声音大小:
+	videos.volume(0.5);
+	
+	取得视频的宽度:
+	var wid = videos.width();
+	
+	设置宽度:
+	videos.width(600);
+	
+	取得高度:
+	var heig = videos.height();
+	
+	设置高度:
+	videos.height(300);
+	
+	宽高一起设置:
+	videos.size(600,300);
+	
+	设置全屏:
+	videos.requestFullscreen();//注意，不同的浏览器screen的“S”大小写不一样
+	
+	退出全屏:
+	videos.exitFullscreen();
+</pre>
+<p>视频代码</p>
+    <pre>
+	       *{
+				margin: 0;
+				padding: 0;
+			}
+			#container {
+				width: 800px;
+				height:30px;
+				background: rgba(0,0,0,0.5);
+				position: absolute;
+				top: 445px;
+				left: 0;	
+				cursor: pointer;
+			}
+			#total {
+				width: 800px;
+				height: 5px;
+				background: #fff;
+			    position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 1;
+			}
+			
+			#now {
+				width: 800px;
+				height: 5px;
+				background: orange;
+			    position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 3;
+			}
+			
+			#yuan {
+				width: 8px;
+				height: 8px;
+				border-radius: 5px;
+				background: red;
+				position: absolute;
+				top: -2px;
+				left: -2px;
+				z-index: 3;
+			}	
+			#buff {
+				width: 800px;
+				height: 5px;
+				background: lightblue;
+			    position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 2;
+			}
+			#start{
+				position: absolute;
+				top: 8px;
+				left: 0;
+				z-index: 2;
+			}
+			#nextV{
+				position: absolute;
+				top: 8px;
+				left: 35px;
+			
+			}
+			#section{
+				position: absolute;
+				top: 9px;
+				left: 691px;
+				z-index: 2;
+				color: #fff;
+			}
+			#to{
+				position: absolute;
+				top: 9px;
+				left: 726px;
+				color: #fff;	
+			}
+			#fullScreen{
+				width:30px;
+				height:23px;
+				border: 1px solid #fff;
+				position: absolute;
+				top: 5px;
+				left: 768px;
+				color: #fff;
+				text-align: center;
+				line-height: 23px;
+				z-index: 10;	
+			}
+	 
+	 
+		video width="800" height="500" id="videos">
+			您的浏览器不支持！
+			<source />
+		</video>
+		    div id="container">
+		    div id="total"></div> <!--总的长度时间-->
+		     </pre>
+		  <pre>  
+			div id="now"> </div>        <!-- 当前加载时间-->
+			div id="yuan"></div>        
+			div id="buff"></div>        <!--预加载条-->
+			button id="start">播放</button>     
+			button id="nextV">》</button>
+			div id="section"></div>      <!--进度时间-->
+			div id="to"></div>  <!--总时间-->
+	                div id="fullScreen">全</div>  <!--全屏-->
+	
+		</pre>
+		
+		<pre>
+			var videos = document.getElementById('videos');
+			var start = document.getElementById('start'); //播放按钮
+			var now = document.getElementById('now'); //显示当前精度
+			var yuan = document.getElementById('yuan') //圆点开关
+			var buff = document.getElementById('buff') //预加载条
+			var container = document.getElementById('container')
+		    var section = document.getElementById('section');
+			var total = document.getElementById('total');
+			var nextV = document.getElementById('nextV');
+			var one = document.getElementById('one');
+			var two =  document.getElementById('two');
+			
+			var nowTime;
+			var totalTime;
+			var arr = [{
+				src: "files/婚礼现场.webm"
+			}, {
+				src: "files/movie.ogg"
+			}]
+			var i = 0;
+			start.addEventListener("click", plays, false)
+			videos.src = arr[i].src
+			function plays() {
+				playM();
+			}
+			nextV.addEventListener('click', nextVideo, false)
+
+			function nextVideo() {
+				i++;
+				videos.src = arr[i].src
+				playM();
+			}
+			//隐藏导航栏
+			var s = 0;
+			   clearInterval(st)
+			var st=setInterval(function(){
+				
+				s++;
+			   container.style.display = "none";
+				if(s>6){
+			
+			     clearInterval(st)
+				}
+				
+			},2000)
+			videos.addEventListener('mouseover',overs,false);
+		      function overs(){
+			  	container.style.display = "block";
+		     }
+		    
+			//拖动进度条
+			total.addEventListener('click', dianji, false);
+			function dianji(e) {
+				nowTime = videos.currentTime;
+				totalTime = videos.duration;
+				console.log(e.clientX)
+				now.style.width = e.clientX + "px"
+				yuan.style.marginLeft = e.clientX + "px"
+			}
+			
+			container.addEventListener('mousedown', down, false)
+			var d = false;
+
+			function down(e) {
+				d = true;
+			}
+			container.addEventListener('mousemove', move, false)
+
+			function move(e) {
+				if(d) {
+					now.style.width = e.clientX + "px"
+					yuan.style.marginLeft = e.clientX + "px"
+				}
+			}
+			window.addEventListener('mouseup', up, false)
+
+			function up(e) {
+				d = false;
+		}
+		
+			function playM() {
+				if(videos.paused) {
+					videos.play();
+					start.innerHTML = '暂停'
+				} else {
+					videos.pause();
+					start.innerHTML = "播放"
+				}
+				
+				
+				var timer = setInterval(function() {
+					to.innerHTML=parseInt(videos.duration);
+					section.innerHTML=parseInt(videos.currentTime)+"/";
+					
+					nowTime = videos.currentTime;
+					totalTime = videos.duration;
+					now.style.width = parseInt(nowTime / totalTime * 800) + "px"
+					yuan.style.marginLeft = parseInt(nowTime / totalTime * 800) + "px"
+					var rangs = videos.buffered; //获取视频buffered 属性返回 TimeRanges 对象
+					var during = rangs.end(rangs.length - 1);
+					tt = during / totalTime * 800;
+					buff.style.width = tt + "px";
+
+				}, 1000)
+			}
+			
+			container.addEventListener('click',fullScreen,false);
+			function fullScreen(){
+				var fullScreen = document.getElementById('fullScreen');
+				videos.style.width=1600+"px";
+				videos.style.height=860+"px";
+				container.style.marginTop = 350 +"px"
+				container.style.marginLeft = 50 +"px"
+	            console.log(window.screen.availWidth)
+	
+			}
+		
+       </pre>
+</div>
+		
+	</body>
+</html>
