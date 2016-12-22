@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				background-image: url(http://a1.qpic.cn/psb?/V107sOVO3w2Pbd/7L2Lmev831CB9xi4YB4V4te8H3m9d5PMCA5fYp93PKs!/m/dHgBAAAAAAAA&bo=DAOZAQAAAAAFB7M!&rf=photolist);
+			}
+			
+			#box {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+			}
+			
+			pre {
+				font-size: 20px;
+				background: #fff;
+				border-radius: 10px;
+			}
+			
+			p {
+				font-size: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+
+			<h1>Ajax的使用</h1>
+			<h2>简介实例</h2>
+			<h2>AJAX XHR</h2>
+			<h4>xhr 创建对象</h4>
+			<h4>xhr 请求</h4>
+			<h4>xhr 响应</h4>
+			<h4>xhr readyState</h4>
+
+			<p>ajax不是新的语言，而是一种使用现有标准的新方法，是与服务器交换数据并更新部分网页的艺术，且不重新加载整个页面</p>
+			<p>ajax 是一种用于创建快速动态网页的技术，通过在后台与服务器进行少量数据交换。且可以使用网页实现异步更新 意味着在不重新加载整个网页的情况下，对网页的某部分进行更新、 主要代表：Google地图</p>
+			<h2>ajax-创建XMLHttpRequest 对象</h2>
+			<p>XMLHttpRequest用于在后台与服务器交互数据</p>
+			<pre>
+		 创建XMLHttpRequest对象语法：
+		 var xhr = new XMLHttpRequest();
+		 老版本IE：
+		 var xhr = new ActiveXObject("Microsoft.XMLHTTP");
+		 
+		 为了应对不同的浏览器，我们使用IF判断
+		 var xhr;
+		 if(window.XMLHttpRequest){
+		 	  xhr = new XMLHttpRequest();
+		 }
+		 else{
+		 	  xhr = new ActiveXObject("Microsoft.XMLHTTP");
+		 }
+		 </pre>
+			<h2>ajax向服务器发送请求</h2>
+			<p>想服务器发送到服务器，我们使用XMLHttpRequest的对象open() send()方法</p>
+			<pre>
+         xhr.open("GET","url",true);
+         xhr.send();
+                         下面关于open、send的方法：
+         open(get/post,url,异步/同步)
+         send(string)
+                          将请求发送到服务器
+         </pre>
+			<pre>
+		注意：
+		GET和POST如何选择？
+		与POST相比 ，GET更简单也快捷，并且在大部分情况下都能用 
+		
+		这种情况请使用POST：
+		1.无法使用缓存文件（更新服务器上的文件或数据库）
+		2.向服务器发送大量数据（POST没有数据限制）
+		3.发送包含未知字符的用户输入时，POST比GET更稳定可靠
+		</pre>
+			<h2>服务器响应 responseText或responseXML</h2>
+			<p>responseText：获得字符串形式的响应数据</p>
+			<p>responseXML:获得XML形式的响应数据</p>
+			<p>document.getElementById('div').innerHTML =xhr.responseText</p>
+			<pre>
+		 		  xmlDoc=xmlhttp.responseXML;
+txt="";
+x=xmlDoc.getElementsByTagName("ARTIST");
+for (i=0;i<x.length;i++)
+  {
+  txt=txt + x[i].childNodes[0].nodeValue + "<br />";
+  }
+document.getElementById("myDiv").innerHTML=txt;
+		</pre>
+         <h2>ajax-onreadystatechange事件</h2>
+          <p>当当请求被送到服务器，我们需要执行一些基于响应的任务，每当readState改变时，就会触发onreadystatechange事件</p>
+          <p>readState属性存有XMLHttpRequest的状态信息</p>
+          <p>下面是XMLHttpRequest对象三个属性：</p>
+          <pre>
+          onreadystatechange:存储函数（或函数名），每当readState属性改变时 就会调用该函数
+          readyState:存在的状态  从0到4
+          0.请求为初始化
+          1.服务器连接一建立
+          2.请求已接受
+          3.请求已处理
+          4.请求已完成 且想一个已就绪
+          </pre>
+           <pre>
+           status:     200：“OK”
+                       404：未找到页面
+                       
+                            在onreadystatechange事件中，我们规定当服务器响应已做好处理的准备时所执行的任务
+                           当  readyState ==4 ;status == 200;表示响应已就绪
+            实例：
+            xhr.onreadystatechange = function(){
+            	if(xhr.readyState ==4 && xhr.status ==200){
+            		document.getElementById('div').innerHTML = xhr.responseText;
+            	}
+            }
+           </pre>
+         <h2>ajax与Json数据的交互</h2>
+           <p>我们采用吧请求回来的数据 通过JSON.parse(xhr.response)</p>
+           <p>JSON.parse()的作用就是可以将json转化成字符串，也可以反过来转化，因为我们接收的json数据比较大 可以通过ajax来访问json里的内容</p>
+           <img src="http://cgcgj.img48.wal8.com/img48/563949_20161222194556/148240721456.png" alt="json" border="0" />
+            <p>JSON[1]  结构有两种结构[2] 
+               json简单说就是javascript中的对象和数组，所以这两种结构就是对象和数组两种结构，通过这两种结构可以表示各种复杂的结构。
+               1、对象：对象在js中表示为“{}”括起来的内容，数据结构为 {key：value,key：value,...}的键值对的结构，在面向对象的语言中，key为对象的属性，value为对应的属性值，所以很容易理解，取值方法为 对象.key 获取属性值，这个属性值的类型可以是 数字、字符串、数组、对象几种。
+               2、数组：数组在js中是中括号“[]”括起来的内容，数据结构为 ["java","javascript","vb",...]，取值方式和所有语言中一样，使用索引获取，字段值的类型可以是 数字、字符串、数组、对象几种。
+                                                    经过对象、数组2种结构就可以组合成复杂的数据结构了。</p>
+             <p>简单地说[2]  ，JSON 可以将 JavaScript 对象中表示的一组数据转换为字符串，然后就可以在函数之间轻松地传递这个字符串，或者在异步应用程序中将字符串从 Web 客户机传递给服务器端程序。这个字符串看起来有点儿古怪，但是JavaScript很容易解释它，而且 JSON 可以表示比"名称 / 值对"更复杂的结构。
+             	例如，可以表示数组和复杂的对象，而不仅仅是键和值的简单列表。</p>
+             
+             <p>下面代码就是Ajax和json结合：</p>
+             
+            <img src="http://cgcgj.img48.wal8.com/img48/563949_20161222194556/148240783342.png" alt="ajax" border="0" />
+            
+		</div>
+	</body>
+
+</html>
