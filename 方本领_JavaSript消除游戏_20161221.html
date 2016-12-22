@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		body{background-image: url(http://a1.qpic.cn/psb?/V107sOVO3w2Pbd/7L2Lmev831CB9xi4YB4V4te8H3m9d5PMCA5fYp93PKs!/m/dHgBAAAAAAAA&bo=DAOZAQAAAAAFB7M!&rf=photolist);
+			  }
+			  #box{width: 1200px;height:auto;margin:auto;}
+			  pre{font-size: 20px;background: #fff;border-radius: 10px;}
+			  p{font-size: 20px;}
+		</style>
+	</head>
+	<body>
+	<h2>关于小视频理解思路</h2>
+	<p>1.创建画布 HTML5 canvas标记    js外联脚本</p>
+	<p>2.onload方法：当页面加载完成时调用函数</p>
+	<p>3.变量声明</p>
+	<p>4.console.log()的封装控制台</p>
+	<p>5.函数封装：面向对象思想</p>	
+	<p>6.getContext("2d"):  html5上下文环境  返回绘图对象</p>
+	<p>7.Image JabaScript 对象</p>
+	<p>8.绘图环境 绘图方法 ：drawIamge()方法</p>
+	<p>9.定时器：setInterval使用</p>
+	<p>10.条件判断 if else  e.clientX坐标的理解</p>
+	<p>11.逻辑运算符，赋值云算法 --运算符</p>
+	<p>12.数学几何</p>
+	<p>13.程序结构控制：for 循环</p>
+	<p>14.object对象</p>
+	<p>15.数组对象的遍历。数组方法Array.splice(索引，删除的数量)</p>
+	<p>16.性能优化</p>
+	<h2>以下是JS代码 这款游戏主要锻炼人的思维  和对坐标的理解</h2>
+	<pre>
+window.onload = init;
+window.onmousemove = mouseMove;
+window.onkeydown = keyDown;
+var canvas , ctx,cW,cH;
+var bg,board;
+var st;
+var boardX ,boardY ,boardW, boardH;
+var ball, ballX , ballY;
+boardX = 350;
+boardY = 700;
+boardW = 150;
+boardH = 20;
+ballX = 350;
+ballY = 350;
+cW = 1000;
+cH = 800;
+var vx , vy;
+vx = 8;
+vy = 4;
+var bricks = [];
+var imgW , imgH;
+imgW = 150;
+imgH = 50;
+//初始化游戏设置和参数
+function init(){
+	trace("游戏初始化完毕！");
+	canvas = document.getElementById("canvas");
+	ctx = canvas.getContext("2d");	
+	//背景
+	bg = addImg("images/bg.png");
+	//球
+	ball = addImg("images/ball.png");
+	//挡板
+	board = addImg("images/board.png");
+	st = setInterval(updateCanvas,1000 / 60);
+	createBrick();
+}
+//刷新画布
+function updateCanvas(){
+	ctx.clearRect(0,0,cW,cH);
+	ctx.drawImage(bg,0,0);
+	ctx.drawImage(board,boardX,boardY);
+	ctx.drawImage(ball,ballX,ballY);	
+	ballMove();
+	ballBoardHit();	
+	drawBricks();
+	ballBricksHit();
+}
+//球移动
+function ballMove(){
+	ballX += vx;
+	ballY += vy;
+	if(ballX >= cW - ball.width){
+		vx  *= -1;	
+	}else if(ballX <= 0){
+		vx  *= -1;
+	}	
+	if(ballY < 30){
+        ballY = 30;
+        vy *= -1;
+    }else if(ballY > 700){
+
+    }
+   
+}
+//鼠标移动
+function mouseMove(e){
+	boardX = e.clientX - boardW /2;
+}
+function keyDown(e){
+	if(e.keyCode == 37){
+		boardX -= 5;
+	}
+	if(e.keyCode == 39){
+		boardX += 5;
+	}
+}
+//生成图片
+function addImg(_src){
+	var img = new Image();
+	img.src = _src;
+	return img;
+}
+//碰撞检测
+function testObjectHit(x1,y1,w,h,x2,y2){
+	if(x2>x1&& y2 > y1 && x2 < x1 + w && y2 < y1 + h){
+		return true;
+	}else{
+		return false;
+	}
+}
+</pre>
+<pre>
+//判断球与挡板的碰撞
+function ballBoardHit(){	
+	var b = testObjectHit(boardX ,boardY - 50,boardW + 50,boardH,ballX,ballY);
+	if(b){
+		ballY = boardY - 50;
+//		vx *= -1;
+		vy *= -1;
+	}
+}
+//生成砖块
+function createBrick(){
+	for(var i = 0;i<6;i++){
+		for(var j = 0;j<4;j++){
+			var item = addImg("images/2.png");
+			var x = i * (imgW  + 10);
+			var y = j * (imgH + 5) + 30;
+			var obj = {item:item,x:x,y:y};
+			bricks.push(obj);
+		}
+	}
+}
+</pre>
+<pre>
+//绘制砖块
+function drawBricks(){
+	var l = bricks.length;
+	for(var i = 0;i<l;i++){
+		var item = bricks[i];
+		ctx.drawImage(item.item,item.x,item.y);
+	}
+}
+</pre>
+<pre>
+//砖块与球碰撞检测
+function ballBricksHit(){
+	var l = bricks.length;
+	for(var i = 0;i<l;i++){
+		var item = bricks[i].item;
+		var b = testObjectHit(bricks[i].x,bricks[i].y,item.width,item.height,ballX,ballY);
+		if(b){
+			bricks.splice(i,1);  //如果满足条件清除数组中碰到的砖块i 清除个数一个
+			vy *= -1;      //碰到之后沿反方向
+			item = null;    //清除内存  碰掉的砖块垃圾回收机制 
+		}
+	}
+}
+
+	</pre>
+	
+	
+	</body>
+</html>
