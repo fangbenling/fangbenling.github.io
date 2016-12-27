@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+
+		body {
+				background-image: url(http://a1.qpic.cn/psb?/V107sOVO3w2Pbd/7L2Lmev831CB9xi4YB4V4te8H3m9d5PMCA5fYp93PKs!/m/dHgBAAAAAAAA&bo=DAOZAQAAAAAFB7M!&rf=photolist);
+			}
+			
+			#box1 {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+				border-radius:5px ;
+				border: 1px solid #ddd;
+				background: lightblue;
+			}
+			
+			pre {
+				font-size: 20px;
+				background: #fff;
+				border-radius: 10px;
+			}
+			
+			p {
+				font-size: 20px;
+			}
+			span{
+				width: 100px;
+				height:100px;
+			}
+			.cssClass{
+				background: black;
+			}			
+		</style>
+	</head>
+	<body>
+		<div id="box1">	
+		<img  width="160" height="100" src="http://cgcgj.img48.wal8.com/img48/563949_20161222194556/148273862505.png" alt="5" border="0" />
+		<h2>jQuery选择器</h2>
+	<pre>
+	jQuery的基本设计思想和用法 就是“选择某个网页元素，然后对齐进行某种操作”。  使用jQuery的第一步，
+	如何选择一个表达式，放进构造函数  “jQuery() 简写:$”通过CSS选择器获取HTML中的元素。以下是
+	实现效果 与代码。jQuery书写的正确格式:以标签选择器为例子：
+	实例1:
+	$(document).ready(function(){
+		$('btn').click(function(){
+			 $('p').css("background","red")
+		});
+	});
+	实例2:
+	 $(document).ready(function(){
+			$('.btn').click(clicks)
+			function clicks(){
+				$('p').css("background","red")
+			};
+		});
+		以上使用选择器 且添加了点击事件 一个btn点击命令  一个p改变CSS样式;
+	 选择器有很多: 一、基础选择器：    id  class *(通用)  元素       组合
+	               二、层级选择器： 后代$("div span")   子代$("div>span")  相邻$("#one+span")  兄弟$("#one~span")
+	               三、过滤选择器： :first--$("div:first")选取所有div>元素中第一个div>元素。
+	                       :animated--$("div:animated")选取正在执行动画的div元素 
+	               四、属性选择器:  属性与过滤器
+	               五、表单域选择器： :input--$(":input")选取所有input>里的标签元素
+	                       :text--$(":text")选取所有的单行文本框
+	                       :password--$(":password")选取所有密码框
+	                       :radio
+	                       :chaeckbox
+	                       :submit
+	                       :image
+	                       :reset   重置按钮
+	                       :button
+	                       :file   上传域
+	                       :hidden 不可见元素
+	  </pre>
+		 <span id="box">你好,世界</span> <button id="btn">点击1</button>
+		 <span class="box2">我要变黄</span> <button class="btn2">点击2</button>
+	     <a href="">我要变红</a>   <button class="btn3">点击3</button>
+	     <span id="b1">我要变绿</span>
+	     <span class="b2">我要变绿</span>
+	     <span>我要变绿</span>
+	     <button class="btn4">点击4</button>
+	 <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+     <script src="https://code.jquery.com/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		//*********id选择器***********//
+		$(document).ready(function(){
+		  $('#btn').click(function(){
+		  	 $("#box").toggleClass('cssClass');
+		    });		
+		});
+		
+		//*********类选择器***********//
+		$(document).ready(function(){
+			$('.btn2').click(function(){
+				$(".box2").css("background","yellow");			
+			});
+		});
+			
+		//*********标签选择***********//
+		$(document).ready(function(){
+			$('.btn3').click(clicks)
+			function clicks(){
+				$('a').css("background","red")
+			};
+		});
+			
+		//*********群组选择器***********//
+		$(document).ready(function(){
+	       $('.btn4').click(clickt)
+	       function clickt(){
+	       	$("#b1,.b2,span").css("background","green")
+	       };	
+		});
+		</script>
+		<br />
+		<br />
+		<br />
+		<img src="http://cgcgj.img48.wal8.com/img48/563949_20161222194556/148280019924.png" alt="jQuery选择器2" border="0" />
+		<img src="http://cgcgj.img48.wal8.com/img48/563949_20161222194556/148280019857.png" alt="jQuery选择器1" border="0" />
+	<!--图片插入-->
+	<!--<h2>事件</h2>	-->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	    </div>	
+	</body>
+</html>
