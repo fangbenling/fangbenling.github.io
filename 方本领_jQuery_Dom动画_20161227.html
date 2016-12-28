@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+
+		body {
+				background-image: url(http://a1.qpic.cn/psb?/V107sOVO3w2Pbd/7L2Lmev831CB9xi4YB4V4te8H3m9d5PMCA5fYp93PKs!/m/dHgBAAAAAAAA&bo=DAOZAQAAAAAFB7M!&rf=photolist);
+			}
+			
+			#box1 {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+				border-radius:5px ;
+				border: 1px solid #ddd;
+				background: lightblue;
+			}
+			
+			pre {
+				font-size: 20px;
+				background: #fff;
+				border-radius: 10px;
+			}
+			
+			p {
+				font-size: 20px;
+			}
+			span{
+				width: 100px;
+				height:100px;
+			}
+			.cssClass{
+				background: black;
+			}			
+		</style>
+	</head>
+	<body>
+		<div id="box1">
+		<h2>jQueryHTML</h2>
+		<h3>jQuery捕获/DOM操作</h3>
+		<p>获得内容-text()、html()以及val()</p>
+		<p>三个简单实用的dom操作的jQuery方法</p>
+		<pre>
+		text()  设置或返回所选元素的文本内容（纯文本）
+		html()  设置或返回所选元素的内容（包括html标记）
+		val（）  设置或返回表单字段的值 （用于input表单）
+		$("#btn1").click(function(){
+			alert("文本："+$("#test").text());
+		})
+		
+		$("#btn1").click(function(){
+			alert("HTML："+$("#test").html());
+		})
+		
+		$("#btn1").click(function(){
+			alert("值为："+$("#test").val());
+		})
+		</pre>
+		<p>获取属性attr</p>
+		 <pre>
+		 jquery attr()方法用于获取属性值  
+		 $("#btn").click(function(){
+		 	alert($("#div").attr("href"));   获取属性
+		 		alert($("#img").attr("src","img/1.png"));  添加属性值
+		 		$("#runoob").attr({
+                                    "href" : "http://www.runoob.com/jquery",
+                                    "title" : "jQuery 教程"
+                            });    添加多个属性
+		            });
+		 </pre>
+		<h5>text() html() val() 回调函数</h5>
+		<p>回调函数有两个参数：被选元素列表中当前元素的下标，以及原始（旧的）值 然后函数心智返回你希望使用的字符串</p>
+		<pre>
+	     $("#btn1").click(function(){
+                   $("#test1").text(function(i,origText){
+          return "旧文本: " + origText + " 新文本: Hello world! (index: " + i + ")"; 
+    });
+});
+ 
+$("#btn2").click(function(){
+    $("#test2").html(function(i,origText){
+        return "旧 html: " + origText + " 新 html: Hello <b>world!</b> (index: " + i + ")"; 
+    });
+});
+		</pre>
+		<p>attr()的回调函数</p>
+		<p>jQuery方法attr（）也提供回调函数。回调函数有两个参数：被选元素表中当前元素的下标 以及原始（旧的）值 然后以函数新只返回您希望使用的字符串</p>
+		<pre>
+		$("button").click(function(){
+             $("#runoob").attr("href", function(i,origValue){
+		    return origValue + "/jquery"; 
+		  });
+		});
+		</pre>
+		<h3>添加新的HTML内容</h3>
+		<p>新的四个JQ方法</p>
+		<ul><li>append():在被选元素的结尾插入内容(追加内容)  （前提是元素内部有个子标签）</li>
+			<li>appendTo():与append()写法方式相反</li>
+			<li>prepend():在被选元素的开头插入内容</li>
+			<li>prependTo():与prependTo()写法方式相反</li>	
+			<li>after():在被选元素之后插入内容     与before一样插入是同级插入</li>
+			<li>inserAfter():与after()相反</li>	
+			<li>before():在被选元素之前插入内容</li>
+			<li>insertBefore():与before()相反</li>	
+		</ul>
+		<p>使用案例</p>
+       <pre>
+       	$("p").append("追加文本");//
+        $("追加文本").appendTo("p"); //
+        $("p").prepend("在开头追加文本");//  其他同理
+       </pre>		
+		<p>创建若干个新元素，这些元素可以通过text、html、 jQuery JavaScript DOM来创建  我们可以用append（）追加新元素</p>
+		<pre>
+		function appendText()
+{
+    var txt1="<p>文本。</p>";              // 使用 HTML 标签创建文本
+    var txt2=$("<p></p>").text("文本。");  // 使用 jQuery 创建文本
+    var txt3=document.createElement("p");
+    txt3.innerHTML="文本。";               // 使用 DOM 创建文本 text with DOM
+    $("body").append(txt1,txt2,txt3);        // 追加新元素
+}
+		</pre>
+	<p>after()和before()方法</p>	
+	<pre>
+$("img").after("在后面添加文本");
+ 
+$("img").before("在前面添加文本");
+	</pre>
+	<p>通过after()和before()方法添加若干新元素</p>
+	<pre>
+	function afterText()
+{
+    var txt1="<b>I </b>";                    // 使用 HTML 创建元素
+    var txt2=$("<i></i>").text("love ");     // 使用 jQuery 创建元素
+    var txt3=document.createElement("big");  // 使用 DOM 创建元素
+    txt3.innerHTML="jQuery!";
+    $("img").after(txt1,txt2,txt3);          // 在图片后添加文本
+}
+	</pre>
+	<p>jQuery删除元素</p>
+	<pre>
+	remove()  删除被选元素（及其子元素  即本身也被删除）
+	empty()  从被选元素中删除子元素
+	
+	$(document).ready(function(){
+  $("button").click(function(){
+    $("#div1").remove();
+  });
+});
+</script>
+</head>
+<body>
+
+<div id="div1" style="height:100px;width:300px;border:1px solid black;background-color:yellow;">
+
+这是 div 中的一些文本。
+<p>这是在 div 中的一个段落。</p>
+<p>这是在 div 中的另外一个段落。</p>
+
+</div>
+   
+   
+   
+   
+ $("#div1").empty();   //删除里面的p标签   父级div不会别删除
+ 
+ 
+ 过滤杯删除的元素
+ jQuery remove()方法也可接受一个参数  允许对被删除元素过滤
+ 该参数可以是任何jQuery选择器  下面删除class=“demo”的所有<p>元素
+ $("p").remove(".italic");	
+	</pre>
+	<p>wrap():在原有的p元素上环绕一个div</p>
+	<pre>
+	 $("p").wrap("div");
+	 <div><p></p></div> //效果样式
+	</pre>
+	<p>clone():方法生成被选元素的副本  包含子节点 文本和属性</p>	
+	<pre>
+	克隆所有的 <p> 元素，并插入到 <body> 元素的结尾：
+$("button").click(function(){
+$("p").clone().appendTo("body");
+});
+	</pre>
+	<h3>jQuery获取病设置CSS类</h3>	
+	<p>addClass():向被选元素添加一个或多个类</p>
+	<p>removeClass():向被选元素删除一个或多个类</p>
+	<p>toggleClass():向被选元素添加/删除类的操作</p>
+	<p>css():设置或返回样式属性</p>
+	<pre>
+  .important
+{
+        font-weight:bold;
+        font-size:xx-large;
+}
+ 
+.blue
+{
+        color:blue;
+}
+
+$("button").click(function(){
+  $("h1,h2,p").addClass("blue");
+  $("div").addClass("important");
+});
+	
+
+$("button").click(function(){
+  $("h1,h2,p").removeClass("blue");
+});
+
+
+
+$("button").click(function(){
+  $("h1,h2,p").toggleClass("blue");
+});
+
+
+$("p").css({"background-color":"yellow","font-size":"200%"});
+	</pre>	
+		
+	<h3>jQuery尺寸方法</h3>
+	<p>width()</p>
+	<p>height()</p>
+	<p>innerWidth()</p>
+	<p>innerHeight()</p>
+	<p>outerWidth()</p>
+	<p>outerHeight()</p>
+	<p>jQuery width（）和height（）</p>
+	<pre>
+	width() 方法设置或返回元素的宽度（不包括内边距、边框或外边距）。
+height() 方法设置或返回元素的高度（不包括内边距、边框或外边距）。
+下面的例子返回指定的 <div> 元素的宽度和高度：
+实例
+$("button").click(function(){
+  var txt="";
+  txt+="div 的宽度是: " + $("#div1").width() + "</br>";
+  txt+="div 的高度是: " + $("#div1").height();
+  $("#div1").html(txt);
+});
+	</pre>
+<pre>
+jQuery innerWidth() 和 innerHeight() 方法
+innerWidth() 方法返回元素的宽度（包括内边距）。
+innerHeight() 方法返回元素的高度（包括内边距）。
+下面的例子返回指定的 <div> 元素的 inner-width/height：
+实例
+$("button").click(function(){
+  var txt="";
+  txt+="div 宽度，包含内边距: " + $("#div1").innerWidth() + "</br>";
+    txt+="div 高度，包含内边距: " + $("#div1").innerHeight();
+  $("#div1").html(txt);
+});
+</pre>
+
+<pre>
+jQuery outerWidth() 和 outerHeight() 方法
+outerWidth() 方法返回元素的宽度（包括内边距和边框）。
+outerHeight() 方法返回元素的高度（包括内边距和边框）。
+下面的例子返回指定的 <div> 元素的 outer-width/height：
+实例
+$("button").click(function(){
+  var txt="";
+  txt+="div 宽度，包含内边距和边框: " + $("#div1").outerWidth() + "</br>";
+  txt+="div 高度，包含内边距和边框: " + $("#div1").outerHeight();
+  $("#div1").html(txt);
+});
+</pre>
+<p>offset()方法</p>	
+<pre>
+返回 <p> 元素的偏移坐标：
+$("button").click(function(){
+var x=$("p").offset();
+alert("Top: " + x.top + " Left: " + x.left);
+});
+</pre>
+<p>offset()方法设置或返回被选元素相对于文档偏移坐标</p>
+<p>当用于返回偏移时：</p>
+<p>该方法返回第一个匹配元素的偏移坐标  他返回一个电邮两个属性（一像素为单位的top和left位置）的对象</p>
+<p>当用于设置偏移时：</p>
+<p>该方法设置所有匹配元素的偏移坐标</p>
+<pre>
+	返回偏移坐标
+$("#div").offset()
+         设置偏移坐标
+$("#div").offset({top:100,left:100})
+    使用函数设置偏移坐标
+$("#div").offset(function(index,currentoffset))
+index:返回集合中元素的index位置
+currentoffset：返回被选元素的当前坐标
+</pre>	
+<p>offsetParent()方法</p>
+<p>设置p元素的最近定位的祖先元素的背景颜色</p>
+<pre>
+$("#div").click(function(){
+	$("p").offsetParent().css("background-color","red")
+});
+</pre>
+<p>offsetParent()方法返回第一个定位的祖先元素</p>
+<p>注意：通过jQuery或css的position属性（relative、absolute或fixed）对元素进行定位</p>
+<p>jQuery(方法)</p>
+<p>返回p元素的top和left位置</p>
+<pre>
+$("button").click(function(){
+x=$("p").position();
+alert("Top: " + x.top + " Left: " + x.left);
+});
+</pre>
+<p>positon()方法返回第一个匹配元素的位置（相对它的父元素）</p>
+<p>该方法返回一个带有两个属性（以像素为单位的top和left位置）的对象</p>
+<p>jQuery scrollLeft()方法</p>
+<pre>
+$("button").click(function(){
+alert($("div").scrollLeft());
+});
+</pre>
+<p>scrollLeft()方法设置或返回被选元素的水平滚动条的位置</p>
+<p>注意：当滚动条位于最左侧时  位置是0</p>
+<pre>
+当用于返回值时：
+该方法返回第一个匹配元素的滚动条的水平位置
+当用于设置位置时：
+该方法设置所有匹配元素的滚动条的水平位置
+</pre>
+<p>jQuery scrollTop()方法</p>
+<p>返回div元素的垂直滚动条位置</p>
+<pre>
+$("button").click(function(){
+alert($("div").scrollTop());
+});
+</pre>	
+<p>scrollTop()方法设置或返回被选元素的垂直滚动条位置</p>
+<p>注意：当滚动条位于最顶部时  位置是0</p>
+<pre>
+当用于返回值时：
+该方法返回第一个匹配元素的滚动条的垂直位置
+当用于设置位置时：
+该方法设置所有匹配元素的滚动条的垂直位置。
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+<script src="https://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    alert($("div").scrollTop()+" px");
+  });
+});
+</script>
+</head>
+<body>
+
+<div style="border:1px solid black;width:100px;height:150px;overflow:auto">
+This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.</div><br>
+<button>返回垂直滚动条的位置</button>
+<p>向下移动滚动条,再次单击该按钮。</p>
+
+</body>
+</html>
+</pre>
+	
+<h1>jQuery效果</h1>
+<p>jQuery隐藏显示</p>
+<p>通过jQuery 你可以使用hide()和show()方法来隐藏和显示HTML元素</p>
+<pre>
+
+</pre>
+		
+		
+		
+		
+		
+		
+		
+		
+		</div>	
+	</body>
+</html>
