@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+
+		body {
+				background-image: url(http://a1.qpic.cn/psb?/V107sOVO3w2Pbd/7L2Lmev831CB9xi4YB4V4te8H3m9d5PMCA5fYp93PKs!/m/dHgBAAAAAAAA&bo=DAOZAQAAAAAFB7M!&rf=photolist);
+			}
+			
+			#box1 {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+				border-radius:5px ;
+				border: 1px solid #ddd;
+				background: lightblue;
+			}
+			
+			pre {
+				font-size: 20px;
+				background: #fff;
+				border-radius: 10px;
+			}
+			
+			p {
+				font-size: 20px;
+			}
+			span{
+				width: 100px;
+				height:100px;
+			}
+			.cssClass{
+				background: black;
+			}			
+		</style>
+	</head>
+	<body>
+		<h2>动画所学知识点</h2>
+		  <pre>
+   script type="text/javascript">
+    	$(document).ready(function(){
+    		$(".tab li").mouseover(function(){
+    			$(this).addClass('active').siblings().removeClass('active')
+    			var idx = $(this).index(); //索引选择图片的索引号
+    		     console.log(idx)
+    			$('.main').eq(idx).addClass('selected').siblings('.main').removeClass('selected')
+    		})
+    	})
+    </script>
+    <img src="http://cgcgj.img48.wal8.com/img48/563949_20161222194556/148345927154.png" alt="图形联动" border="0" />
+     通过事件去触发$(".tab li")函数  $(this)指代的是当前class下的li ;
+     addClass:增加样式;
+     removeClass:移除样式；
+     siblings:选择所有兄弟同胞（除去自己）
+      $(this).index():对class下的所有li 索引号 （从0开始）
+      eq(n):括号里填写 数字  和上面的li建立对应的链接 
+      选择不同的li   就会有不同图片与之对应
+		  </pre>
+          <h2>轮播</h2>
+          <pre>
+          <img src="http://cgcgj.img48.wal8.com/img48/563949_20161222194556/148346049815.png" alt="jQuery轮播" border="0" />
+    用法和上面的使用类似 都是用siblings()同胞   和this   index   索引  与之一一对应，还有animate({style},speed,fun)自定义动画 写法规范
+          </pre>
+          <h3>手风琴</h3>
+          <pre>
+        <img src="http://cgcgj.img48.wal8.com/img48/563949_20161222194556/148346112721.png" alt="手风琴" border="0" />
+    主要以布局为主  for each与each  前者用于JS后者用于JQ写法上也有区别 for each(fun,index)  JQ相反   一般我们在animate前面加上stop()防止动画不停止  一直变化    
+          </pre>
+	</body>
+</html>
