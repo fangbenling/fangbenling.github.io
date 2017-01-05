@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+				<style type="text/css">
+
+		body {
+				background-image: url(http://a1.qpic.cn/psb?/V107sOVO3w2Pbd/7L2Lmev831CB9xi4YB4V4te8H3m9d5PMCA5fYp93PKs!/m/dHgBAAAAAAAA&bo=DAOZAQAAAAAFB7M!&rf=photolist);
+			}
+			
+			#box1 {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+				border-radius:5px ;
+				border: 1px solid #ddd;
+				background: lightblue;
+			}
+			
+			pre {
+				font-size: 20px;
+				background: #fff;
+				border-radius: 10px;
+			}
+			
+			p {
+				font-size: 20px;
+			}
+			span{
+				width: 100px;
+				height:100px;
+			}
+			.cssClass{
+				background: black;
+			}			
+		</style>
+	</head>
+	<body>
+		<h2>HTML5拖放</h2>
+	  <p>Drag 和 Drop :</p>
+	  <p>拖放是一种常见的特性 抓取对象以后拖到另一个位置   任何元素都可以被拖放</p>
+	  <pre>
+	  <script type="text/javascript">
+	  	function allowDrop(e)
+	  	  {
+	  		e.preventDefault();
+	  	  } //允许元素中放置数据
+	  	  
+	  	  
+	  	  function drag (e){
+	  	  	e.dateTransfer.setData("Text", e.target.id);
+	  	  }//  里面设置被拖动的数据  （数据类型，值）  text:是数据类型   值：id（drag）
+	  	  
+	  	  function drop (e){
+	  	  		e.preventDefault();
+	  	  		var data = e.DataTransfer.getData("Text");
+	  	  		e.target.appendChild(document.getElementById(data))
+	  	  } //当放置被拖动数据时  会发生drop事件
+	  	     //调用preventDefault()来避免浏览器对数据默认处理
+	  	     //通过DataTransfer.getData("Text")获取被拖动的数据   将方法返回给setData()
+	  	     //被拖数据指的就是  被拖得元素id("drag")
+	  	     //吧被拖得元素追加到放置元素中
+	  </script>
+	  <body>
+	  	<p>拖动图片到矩形框中</p>
+	  	<div id="demo" ondrop="drop(e)" ondragover="allowDrop(e)"></div>
+	  	 // ondragover="allowDrop(e)"  调用了一个函数   ondragover事件规定将拖住的数据放在哪里
+	  	 默认是  ：无法将数据、元素放置到其他元素中 
+	  	 如果放置  允许放置  我们必须设置这个函数allowDrop(e)
+	  	 // ondrop 调用了一个函数drop（e）
+	  	<img src="huoche.gif"  id="drag"   draggable="true" ondragstart="drag(e)" />
+	  	// draggable="true"  是元素可拖动
+	  	// ondragstart="drag(e)"   调用drag(e)这个函数    拖动这个函数内部设置好的数据类型和值 
+	  </body>
+	  </pre>
+	  
+	 <h3>HTML5表单元素</h3>
+	 <p>form中添加的新元素</p>
+	 <p>datalist>:类似给radio添加下拉清单</p>
+	 <p>keygen</p>
+	 <pre>
+	 form action="demo_keygen.asp" method="get">
+            用户名: input type="text" name="usr_name">
+                 加密: keygen name="security">
+           input type="submit">
+          /form>
+	 </pre>
+	  <p>output:计算或者脚本输出</p>
+	  <pre>
+	  	<form oninput="x.value=parseInt(a.value)+parseInt(b.value)">0
+<input type="range" id="a" value="50">100 +
+<input type="number" id="b" value="50">=
+<output name="x" for="a b"></output>
+</form>
+	  </pre>
+	<h3>语义话布局</h3>  
+	  <p>顾名思义  语义化  是用正确的元素干正确的事  使布局简洁明了   使用HTML5专用标签
+	  seo 搜索引擎更好搜索</p>
+	<p>一幅图表明的布局</p>
+	<pre>
+	 header>
+	 nav>
+	 section>
+	 aside>
+	 footer>
+	</pre>
+	  <img src=""/>
+	  <h3>HTML5 web存储</h3>
+	  <p>localStorage 和 sessionStorage</p>
+	  <p>客户端存储的两个对象：</p>
+	  <pre>
+	  1.localStorage 没有时间限制的数据存储
+	  2.sessionStorage 针对一个session的数据存储.
+	  在使用web存储前 应检查浏览器是否支持  两种存储
+	  两者的区别：前者存储的数据不管过多少天 都可以访问获取  后者指针对一个session  当用户关闭浏览器窗口后  数据会被删除
+	    input type="" name="" id="age" value="" />
+	    input type="" name="" id="sex" value="" />
+	    input type="" name="" id="name" value="" />
+	    input type="" name="" id="btn" value="" />
+	  
+	  
+	  script type="text/javascript">
+	  	var i= 0;
+	  	var  storageObj = {        //将函数封装在storageObj内
+			  		isSupport:function(){      //web存储前检查浏览器是否支持localStorage
+			  			if(!window.localStorage){
+	   	                 console.log("不支持");
+	   	                 return false;
+                         }
+                         else{
+                         	return turn;
+                         }
+			  		},
+			  		setData:function(nameT,sexT,ageT){    //保存数据  函数内部传的参数就是数据信息   下面通过window保存数据括号内（键值，参数）
+			  			try{
+			  					window.localStorage.setItem("name"+i,nameT) //后面name是传的参数value值       前面是键值（自己取得名字）
+			  		            window.localStorage.setItem("age"+i,ageT)
+			  		            window.localStorage.setItem("sex"+i,sexT)
+			  			}catch(e){
+			  			    //TODO handle the exception
+			  			}
+			  		
+			  		},
+			  	    getData:function(_item){    //读取数据 括号内只需要填写键值（name） 此处使用_item是获取所有的键值减少代码
+			  	    	window.localStorage.getItem(_item);
+			  	    },
+			  	    clear:function(){     //删除所有数据 不需要填写键值 和 参数
+			  	    	window.localStorage.clear();
+			  	    },
+			  	    remove:function(nameT,ageT,sexT){  //删除单个数据  要填写键值
+			  	    	window.localStorage.removeItem("name"+i);
+			  	    	window.localStorage.removeItem("age"+i); 
+			  	    	window.localStorage.removeItem("sex"+i); 
+			  	    } 
+	  	     }
+	  	     var nameT = document.querySelector("#nameT")
+	  	     var  ageT = document.querySelector("#ageT")
+	  	     var  sexT = document.querySelector("#sexT")
+	  	     var   btn = document.querySelector("#btn")
+	  	     btn.onclick = function(){       //点击函数调用获取对象下的函数storageObj.setData();
+	  	     	storageObj.setData(nameT.value,ageT.value,sexT.value)
+	  	     	i++;    //此处的i是为了改变不同的键值  例如  name1  name2 name3.......
+	  	     }
+	  </script>
+
+	  </pre>
+	  <h2>HTML5 WEB SQL</h2>
+	</body>
+</html>
